@@ -24,7 +24,40 @@ SHOW WARNINGS
 SHOW ERRORS
 
 # -------------- C R U D (create read update delete)
+
 # READ
 SELECT * FROM cats;
 SELECT name,age FROM cats;
 SELECT cat_id as 'kitty id', name FROM cats
+SELECT * FROM books WHERE author_fname LIKE 'neil'
+
+# UPDATE
+UPDATE cats SET breed='Shorthair' WHERE breed='Tabby'
+
+# DELETE
+DELETE FROM cats WHERE name='Egg'
+DELETE FROM cats # delete everything
+
+
+# ----------------------- String functions
+
+# CONCAT
+SELECT CONCAT(author_fname, ' ', author_lname) as 'full name' FROM books
+
+select author_fname as first, author_lname as last,
+       concat(author_fname,' ', author_lname) as full
+from books
+
+select author_fname as first, author_lname as last,
+       concat(author_fname,' ', author_lname) as full,
+       concat('Knjiga mi releaseana u ', released_year) as 'moj release'
+from books
+
+# CONCAT_WS - first argument is the seperator
+select concat_ws(' - ',author_fname, author_lname,  released_year) as 'full info'
+from books
+
+# SUBSTR or SUBSTRING (starts from 1, both inclusive) SUBTSTRING('string',pos,len)
+select substring('Hello World',1,4) # Hell
+select substring('Hello World',-3,2) # rl
+select concat(substring(title,1,10), '...') as 'short title' from books
