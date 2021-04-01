@@ -39,7 +39,7 @@ DELETE FROM cats WHERE name='Egg'
 DELETE FROM cats # delete everything
 
 
-# ----------------------- String functions
+----------------------- String functions
 
 # CONCAT
 SELECT CONCAT(author_fname, ' ', author_lname) as 'full name' FROM books
@@ -54,21 +54,64 @@ select author_fname as first, author_lname as last,
 from books
 
 # CONCAT_WS - first argument is the seperator
-select concat_ws(' - ',author_fname, author_lname,  released_year) 
+select CONCAT_WS(' - ',author_fname, author_lname,  released_year) 
 	as 'full info'
 from books
 
 # SUBSTR or SUBSTRING (starts from 1, both inclusive) SUBTSTRING('string',pos,len)
-select substring('Hello World',1,4) # Hell
-select substring('Hello World',-3,2) # rl
-select concat(substring(title,1,10), '...') as 'short title' from books
+select SUBTSTRING('Hello World',1,4) # Hell
+select SUBTSTRING('Hello World',-3,2) # rl
+select CONCAT(SUBTSTRING(title,1,10), '...') as 'short title' from books
 
 # REPLACE
 SELECT REPLACE('Hello world', 'Hell', '%$#@');
 
 # REVERSE
-select reverse(author_fname) as 'reversed' from books;
+select REVERSE(author_fname) as 'reversed' from books;
 
 # CHAR_LENGTH
-select char_length(author_lname) as 'lname len'  from books;
-select author_lname, concat('lastname length is ', char_length(author_lname)) from books;
+select CHAR_LENGTH(author_lname) as 'lname len'  from books;
+select CONCAT(author_lname, ' is ', CHAR_LENGTH(author_lname), ' characters long')
+from books;
+
+# UPPER(), LOWER()
+select UPPER(concat_ws(' ', author_fname, author_lname))
+           as 'full name in caps'
+from books;
+
+----------------------------
+
+# DISTINCT
+SELECT DISTINCT author_lname FROM books;
+-- SELECT DISTINCT concat(author_fname, ' ', author_lname)FROM books;
+SELECT DISTINCT author_fname, author_lname from books
+
+# ORDER BY 
+SELECT title FROM books ORDER BY title # (ascending)
+SELECT title FROM books ORDER BY title ASC # (ascending)
+SELECT title FROM books ORDER BY title DESC # (descending)
+
+SELECT title, author_fname, author_lname
+FROM books
+ORDER BY 2; # order by 2nd selected column (author_fname)
+
+SELECT author_fname, author_lname
+FROM books
+ORDER BY 1, 2; # multiple sorting
+
+# LIMIT
+SELECT title, released_year
+FROM books
+ORDER BY released_year DESC
+LIMIT 5 # starts from 0th row, same as LIMIT 0, 5
+
+SELECT title, released_year
+FROM books
+ORDER BY released_year DESC
+LIMIT 4,10 # start from 4th row and limit 10
+
+SELECT title, released_year
+FROM books
+ORDER BY released_year DESC
+LIMIT 4, 94382892349823 # start any row to end
+
