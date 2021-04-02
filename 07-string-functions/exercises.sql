@@ -1,26 +1,32 @@
-select upper(reverse('Why does my cat look at me with such hatred?'))
-from books;
+SELECT UPPER(REVERSE('Why does my cat look at me with such hatred?'))
+FROM books;
 
-select replace(title, ' ', '->') as title
-from books;
 
-select author_lname as forwards, reverse(author_lname) as backwards
-from books;
+SELECT REPLACE(title, ' ', '->') AS title
+FROM books;
 
-select upper(concat_ws(' ', author_fname, author_lname))
-           as 'full name in caps'
-from books;
 
-select concat(title, ' was released in ', released_year) as blurb
-from books;
+SELECT author_lname AS forwards, REVERSE(author_lname) AS backwards
+FROM books;
 
-select title, char_length(title) as 'character length'
-from books;
 
-select concat(
-               substring(title, 1, 10),
+SELECT UPPER(CONCAT_WS(' ', author_fname, author_lname))
+           AS 'full name in caps'
+FROM books;
+
+
+SELECT CONCAT(title, ' was released in ', released_year) AS blurb
+FROM books;
+
+
+SELECT title, CHAR_LENGTH(title) AS 'character length'
+FROM books;
+
+
+SELECT CONCAT(
+               SUBSTRING(title, 1, 10),
                '...'
-           ) as 'short title',
-       concat(author_lname, ',', author_fname) as 'author',
-       concat(stock_quantity, ' in stock') as 'quantity'
-from books;
+           )                                   AS 'short title',
+       CONCAT(author_lname, ',', author_fname) AS 'author',
+       CONCAT(stock_quantity, ' in stock')     AS 'quantity'
+FROM books;

@@ -1,21 +1,26 @@
 select concat
            (
-               substring(title, 1, 10),
+               SUBSTRING(title, 1, 10),
                '...')
-           as 'short title'
-from books;
+    as 'short title'
+FROM books;
 
-select concat_ws(' - ', author_fname, author_lname, released_year) as 'full info'
-from books;
+
+SELECT concat_ws(' - ', author_fname, author_lname, released_year) as 'full info'
+FROM books;
+
 
 select replace(title, 'e', '3')
-from books;
+FROM books;
 
-select substring(replace(title, 'e', '3'), 1, 10) as 'weird string'
-from books;
+
+select SUBSTRING(replace(title, 'e', '3'), 1, 10) as 'weird string'
+FROM books;
+
 
 SELECT CONCAT(author_fname, reverse(author_fname))
-from books;
+FROM books;
 
-select concat('MY FAVORITE BOOKS IS ', upper(title))
-from books;
+
+select concat('MY FAVORITE BOOKS IS ', UPPER(title))
+FROM books;
