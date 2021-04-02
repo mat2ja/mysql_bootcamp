@@ -35,7 +35,8 @@ LIMIT 3,2; # gives you 4th and 5th books (starts from 4th row)
 SELECT title, released_year
 FROM books
 ORDER BY released_year DESC
-LIMIT 10,238932898929823223; # from 11th row to the end (end is some random huge number)
+LIMIT 10,238932898929823223;
+# from 11th row to the end (end is some random huge number)
 
 -- LIKE
 SELECT title, author_fname, author_lname
